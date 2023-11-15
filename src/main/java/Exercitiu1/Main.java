@@ -1,9 +1,8 @@
-package org.example;
+package Exercitiu1;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 import java.io.File;
 import java.io.IOException;
@@ -11,7 +10,6 @@ import java.io.IOException;
 
 //import static jdk.internal.org.jline.reader.impl.LineReaderImpl.CompletionType.List;
 import java.util.*;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 record Carte(String titlul, String autorul,int anul){
