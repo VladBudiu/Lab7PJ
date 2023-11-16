@@ -35,7 +35,7 @@ public class Chitara extends InstrumentMuzical{
 
     @Override
     public String toString() {
-        return super.toString() +
+        return super.toString() + this.getClass().toString() +
                 "tipChitara_=" + tipChitara_ +
                 ", nrCorzi_=" + nrCorzi_ +
                 '}';

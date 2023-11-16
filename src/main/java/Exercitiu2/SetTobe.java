@@ -45,7 +45,7 @@ public class SetTobe extends InstrumentMuzical{
 
     @Override
     public String toString() {
-        return super.toString() +
+        return super.toString()+ " "+this.getClass().toString()+" " +
                 "tipTobe_=" + tipTobe_ +
                 ", nrTobe_=" + nrTobe_ +
                 ", nrCinele_=" + nrCinele_ +
