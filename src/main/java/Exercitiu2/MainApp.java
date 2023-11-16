@@ -73,20 +73,31 @@ public class MainApp {
     //subpucnt 9
         System.out.println("\nSubiectul 9:");
 
-        Optional<InstrumentMuzical> mostCorzi = set.stream()
+        Optional<Chitara> mostCorzi = set.stream()
                 .filter(s->s.getClass()== Chitara.class)
-                .max(Comparator.comparing(s->((Chitara) s).getNrCorzi_()));
+                .map(m->(Chitara)m)
+                .max(Comparator.comparing(s->(s.getNrCorzi_())));
         mostCorzi.ifPresent(
                 chitara-> System.out.println("\nChitara cu cele mai multe corzi: " + mostCorzi.toString())
         );
-        //var 2:
+    //var 2:
         Set<Chitara> set2 = set.stream().filter(s-> s instanceof Chitara)
                 .map(s->(Chitara) s).collect(Collectors.toSet());
         Optional<Chitara> chitaraCorziMaxim = set2.stream()
                 .max(Comparator.comparing(Chitara::getNrCorzi_));
         chitaraCorziMaxim.ifPresent(chitara -> System.out.println("\nCHitara cu cele mai multe corzi var 2: "+ chitaraCorziMaxim.toString()));
 
-    //subpunct 10
+    //var 3:
+        Optional<Chitara> chitaraCorziMaxi = set.stream()
+                .filter(s -> s instanceof Chitara)
+                .map(s -> (Chitara) s)
+                .collect(Collectors.toSet())
+                .stream()
+                .max(Comparator.comparing(Chitara::getNrCorzi_));
+        System.out.println(chitaraCorziMaxi);
+
+
+        //subpunct 10
         System.out.println("\nSubiectul 10:");
 
         set.stream()
@@ -103,7 +114,9 @@ public class MainApp {
     public static void writeFile(Set<InstrumentMuzical> list) {
         try {
             ObjectMapper mapper = new ObjectMapper();
-            mapper.activateDefaultTyping(mapper.getPolymorphicTypeValidator(), ObjectMapper.DefaultTyping.NON_FINAL);
+            //mapper.activateDefaultTyping(mapper.getPolymorphicTypeValidator(), ObjectMapper.DefaultTyping.NON_FINAL);
+            mapper.activateDefaultTyping(mapper.getPolymorphicTypeValidator());
+
             File file = new File("src/main/resources/instrumente.json");
             mapper.writeValue(file, list);
         } catch (IOException e) {
@@ -115,7 +128,9 @@ public class MainApp {
         try {
             File file = new File("src/main/resources/instrumente.json");
             ObjectMapper mapper = new ObjectMapper();
-            mapper.activateDefaultTyping(mapper.getPolymorphicTypeValidator(), ObjectMapper.DefaultTyping.NON_FINAL);
+           // mapper.activateDefaultTyping(mapper.getPolymorphicTypeValidator(), ObjectMapper.DefaultTyping.NON_FINAL);
+
+            //mapper.activateDefaultTyping(mapper.getPolymorphicTypeValidator());
             return mapper.readValue(file, new TypeReference<Set<InstrumentMuzical>>() {});
         } catch (IOException e) {
             e.printStackTrace();

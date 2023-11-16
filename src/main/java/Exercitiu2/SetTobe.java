@@ -61,7 +61,7 @@ public class SetTobe extends InstrumentMuzical{
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
         SetTobe setTobe = (SetTobe) o;
-        boolean isEqual=( nrTobe_ == setTobe.nrTobe_ && nrCinele_ == setTobe.nrCinele_ && tipTobe_ == setTobe.tipTobe_);
+        boolean isEqual=(super.equals(o)&& nrTobe_ == setTobe.nrTobe_ && nrCinele_ == setTobe.nrCinele_ && tipTobe_ == setTobe.tipTobe_);
         if(!isEqual)
             System.out.println("DUPLICATA");
         return isEqual;

@@ -48,7 +48,7 @@ public class Chitara extends InstrumentMuzical{
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
         Chitara chitara = (Chitara) o;
-        boolean isEqual =( nrCorzi_ == chitara.nrCorzi_ && tipChitara_ == chitara.tipChitara_);
+        boolean isEqual =(super.equals(o)&& nrCorzi_ == chitara.nrCorzi_ && tipChitara_ == chitara.tipChitara_);
         if(!isEqual)
             System.out.println("DUPLICATA");
         return isEqual;

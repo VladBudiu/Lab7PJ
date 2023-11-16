@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 import java.util.Objects;
 
-//@JsonTypeInfo(use = JsonTypeInfo.Id.CLASS)
+@JsonTypeInfo(use = JsonTypeInfo.Id.CLASS)
 public class InstrumentMuzical {
     private  String producator_;
     private int pret;
@@ -50,10 +50,8 @@ public class InstrumentMuzical {
             return true;}
         if (o == null || getClass() != o.getClass()) return false;
         InstrumentMuzical that = (InstrumentMuzical) o;
-        boolean isEqual = (pret == that.pret && Objects.equals(producator_, that.producator_));
-        if(isEqual)
-            System.out.println("\nDUPLICATA\n");
-        return isEqual;
+         return pret == that.pret && Objects.equals(producator_, that.producator_);
+
     }
 
     @Override
