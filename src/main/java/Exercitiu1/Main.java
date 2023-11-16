@@ -13,19 +13,18 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 record Carte(String titlul, String autorul,int anul){
-    public String getAutorul()
-    {
-        return this.autorul;
-    }
 }
 public class Main {
     public static void main(String[] args) {
         Map<Integer, Carte> map2 = new HashMap<Integer, Carte>();
         map2 = readFile();
-        //System.out.println(map2.toString());
+       //subpunct 1
+        System.out.println("\nSubiect 1:");
         var entrySet = map2.entrySet();
         entrySet.stream()
                 .forEach(System.out::println);
+        //subpunct2
+        System.out.println("\nSubiect 2:");
         for (Map.Entry<Integer, Carte> entry : entrySet) {
             if (entry.getKey() == 2) {
                 map2.remove(2);
@@ -33,24 +32,27 @@ public class Main {
                 break;
             }
         }
-
-        var iterator = entrySet.iterator();
-
+        entrySet.stream().forEach(System.out::println);
+        //subpunct 3
+        System.out.println("\nSubiect 3:");
         map2.putIfAbsent(7,new Carte("Adevar","Grai",2020));
-    writeFile(map2);
-//        System.out.println(map2.toString());
-      // entrySet.stream().forEach(System.out::println);
-
-
+        entrySet.stream().forEach(System.out::println);
+        //subpunct 4
+        System.out.println("\nSubiect 4:");
+        writeFile(map2);
+        //subpunct 5
+        System.out.println("\nSubiect 5:");
         Set<Carte> set=new HashSet<Carte>();
         set= map2.values().stream()
                 .filter(carte -> "Yuval Noah Harari".equals(carte.autorul())).collect(Collectors.toSet());
         set.stream().forEach(System.out::println);
-
+        //subpunct 6
+        System.out.println("\nSubiect 6:");
         set.stream()
-                .sorted(Comparator.comparing(Carte::getAutorul))
+                .sorted(Comparator.comparing(c->c.autorul()))
                 .forEach(System.out::println);
-
+        //subpunct 7
+        System.out.println("\nSubiect 7:");
         Optional <Carte> carte = set.stream().min(Comparator.comparing(Carte::anul));
         carte.ifPresent(carte1 -> System.out.println("Cea mai veche carte:\n"+ carte1.toString()));
     }
@@ -60,6 +62,7 @@ public class Main {
             ObjectMapper mapper = new ObjectMapper();
             File file = new File("src/main/resources/carti.json");
             mapper.writeValue(file, list);
+            System.out.println("A fost scris in fisier!");
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -15,7 +15,7 @@ public class MainApp {
     public static void main(String[] args) {
         Set<InstrumentMuzical> set = new HashSet<InstrumentMuzical>();
 
-        //subpunct 1
+    //subpunct 1
         Chitara c1 = new Chitara("DENIM",100, TipChitara.ACUSTICA,6);
         Chitara c2 = new Chitara("MARICICA",320, TipChitara.ELECTRICA,12);
         Chitara c3 = new Chitara("HEAVY",890, TipChitara.CLASICA,6);
@@ -32,8 +32,7 @@ public class MainApp {
         set.add(s3);
      //   set.stream().forEach(System.out::println);
 
-
-        //subpunct 2
+   //subpunct 2
    writeFile(set);
 
    //subpunct 3
@@ -41,34 +40,39 @@ public class MainApp {
         set.stream().forEach(System.out::println);
 
     //subpunct 4
-        System.out.println("Implementarea folosita pentru Set: "+ set.getClass());
+        System.out.println("\nSubiectul 4:");
+        System.out.println("\nImplementarea folosita pentru Set: "+ set.getClass());
 
     //subpunct 5
+        System.out.println("\nSubiectul 5:");
         SetTobe s4 = new SetTobe("GRAVITATE", 534, TipTobe.ELECTRONICE,5,7);
 
         if(set.add(s4))
         {
-            System.out.println("A fost adaugat");
+            System.out.println("\nA fost adaugat");
         }
-        else System.out.println("Setul de tobe nu a fost adaugat pentru ca a fost gasit duplicat");
+        else System.out.println("\nSetul de tobe nu a fost adaugat pentru ca a fost gasit duplicat\n");
 
     //subpunct 6
+        System.out.println("\nSubiectul 6:");
         set.removeIf(instrumentMuzical -> instrumentMuzical.getPret()>3000);
         set.stream().forEach(System.out::println);
 
     //subpunct 7
-        System.out.println("\n\n");
+        System.out.println("\nSubiectul 7:");
         set.stream()
                 .filter(s-> s instanceof Chitara)
                 .forEach(System.out::println);
 
     //subpunct 8
-        System.out.println("\n\n");
+        System.out.println("\nSubiectul 8:");
         set.stream()
                 .filter(s-> s.getClass()== SetTobe.class)
                 .forEach(System.out::println);
+
     //subpucnt 9
-        System.out.println("\n\n");
+        System.out.println("\nSubiectul 9:");
+
         Optional<InstrumentMuzical> mostCorzi = set.stream()
                 .filter(s->s.getClass()== Chitara.class)
                 .max(Comparator.comparing(s->((Chitara) s).getNrCorzi_()));
@@ -81,13 +85,15 @@ public class MainApp {
         Optional<Chitara> chitaraCorziMaxim = set2.stream()
                 .max(Comparator.comparing(Chitara::getNrCorzi_));
         chitaraCorziMaxim.ifPresent(chitara -> System.out.println("\nCHitara cu cele mai multe corzi var 2: "+ chitaraCorziMaxim.toString()));
+
     //subpunct 10
-        System.out.println("\n\n");
+        System.out.println("\nSubiectul 10:");
+
         set.stream()
                 .filter(s-> s instanceof SetTobe)
                 .sorted(Comparator.comparing(s->((SetTobe)s).getNrTobe_()))
                 .forEach(System.out::println);
-        System.out.println("\n\n");
+        System.out.println("\n");
         set.stream()
                 .filter(s-> s instanceof SetTobe)
                 .sorted(Comparator.comparing(s->((SetTobe)s).getNrTobe_()).reversed())
@@ -109,7 +115,6 @@ public class MainApp {
         try {
             File file = new File("src/main/resources/instrumente.json");
             ObjectMapper mapper = new ObjectMapper();
-            //mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
             mapper.activateDefaultTyping(mapper.getPolymorphicTypeValidator(), ObjectMapper.DefaultTyping.NON_FINAL);
             return mapper.readValue(file, new TypeReference<Set<InstrumentMuzical>>() {});
         } catch (IOException e) {
