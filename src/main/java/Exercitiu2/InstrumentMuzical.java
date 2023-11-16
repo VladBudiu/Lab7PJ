@@ -44,10 +44,16 @@ public class InstrumentMuzical {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
+        if (this == o)
+        {
+            System.out.println("Nu e bun ca sunt la fel");
+            return true;}
         if (o == null || getClass() != o.getClass()) return false;
         InstrumentMuzical that = (InstrumentMuzical) o;
-        return pret == that.pret && Objects.equals(producator_, that.producator_);
+        boolean isEqual = (pret == that.pret && Objects.equals(producator_, that.producator_));
+        if(isEqual)
+            System.out.println("\nDUPLICATA\n");
+        return isEqual;
     }
 
     @Override

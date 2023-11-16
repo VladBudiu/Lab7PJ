@@ -43,11 +43,15 @@ public class Chitara extends InstrumentMuzical{
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
+        if (this == o)
+            return true;
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
         Chitara chitara = (Chitara) o;
-        return nrCorzi_ == chitara.nrCorzi_ && tipChitara_ == chitara.tipChitara_;
+        boolean isEqual =( nrCorzi_ == chitara.nrCorzi_ && tipChitara_ == chitara.tipChitara_);
+        if(!isEqual)
+            System.out.println("DUPLICATA");
+        return isEqual;
     }
 
     @Override

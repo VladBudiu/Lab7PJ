@@ -54,11 +54,17 @@ public class SetTobe extends InstrumentMuzical{
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
+        if (this == o)
+        {
+            System.out.println("Nu e bun ca sunt la fel");
+            return true;}
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
         SetTobe setTobe = (SetTobe) o;
-        return nrTobe_ == setTobe.nrTobe_ && nrCinele_ == setTobe.nrCinele_ && tipTobe_ == setTobe.tipTobe_;
+        boolean isEqual=( nrTobe_ == setTobe.nrTobe_ && nrCinele_ == setTobe.nrCinele_ && tipTobe_ == setTobe.tipTobe_);
+        if(!isEqual)
+            System.out.println("DUPLICATA");
+        return isEqual;
     }
 
     @Override
