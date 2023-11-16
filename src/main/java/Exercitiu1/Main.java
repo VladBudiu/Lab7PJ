@@ -11,6 +11,14 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 record Carte(String titlul, String autorul,int anul){
+    @Override
+    public String toString() {
+        return "Carte:{" +
+                "\ntitlu: " + titlul +
+                "\nautor: " + autorul +
+                "\nan: " + anul +
+                "\n}";
+    }
 }
 public class Main {
     public static void main(String[] args) {
